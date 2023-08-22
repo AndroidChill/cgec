@@ -1,10 +1,16 @@
 package com.example.vodovoz_test_project.data.repository
 
-import com.example.vodovoz_test_project.data.api.ApiHelper
+import com.example.vodovoz_test_project.data.api.ApiHelperImpl
+import com.example.vodovoz_test_project.data.api.ListCatalog
+import com.example.vodovoz_test_project.ui.fragments.CatalogRepository
 import javax.inject.Inject
 
-class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
+class MainRepository @Inject constructor(
+    private val apiHelperImpl: ApiHelperImpl
+    ) : CatalogRepository {
 
-    suspend fun getUsers() =  apiHelper.getUsers()
+    override suspend fun catalogList() : ListCatalog {
+        return apiHelperImpl.getCatalog()
+    }
 
 }

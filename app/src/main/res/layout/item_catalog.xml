@@ -7,11 +7,28 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tv_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/iv_product"
+        app:layout_constraintStart_toStartOf="@+id/iv_product"/>
+
+    <ImageView
+        android:id="@+id/iv_hurt"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/heart_empty"
+        app:layout_constraintTop_toTopOf="@+id/iv_product"
+        app:layout_constraintEnd_toEndOf="@+id/iv_product"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

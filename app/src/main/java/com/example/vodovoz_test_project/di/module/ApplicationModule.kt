@@ -52,6 +52,6 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
+    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelperImpl = apiHelper
 
 }

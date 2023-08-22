@@ -28,7 +28,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cocktails"
+        android:id="@+id/rv_catalog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constrainedHeight="true"
