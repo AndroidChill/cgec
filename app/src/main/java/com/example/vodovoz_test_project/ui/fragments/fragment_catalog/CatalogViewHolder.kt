@@ -15,7 +15,7 @@ class CatalogViewHolder (
                 cost: String
             ){
                 with(binding){
-                    val request = ImageRequest.Builder(ivProduct.context).data(imageLink)
+                    val request = ImageRequest.Builder(ivProduct.context).data("http://szorinvodovoz.tw1.ru" + imageLink)
                         .target(onStart = { placeholder ->
                             ivProduct.setImageDrawable(ivProduct.context.getDrawable(R.drawable.ic_launcher_background))
                         }, onSuccess = { result ->

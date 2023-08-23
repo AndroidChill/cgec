@@ -1,9 +1,11 @@
 package com.example.vodovoz_test_project.data.api
 
-import com.example.vodovoz_test_project.data.model.Catalog
-import retrofit2.Response
+import javax.inject.Inject
 
-interface ApiHelper {
-
-    suspend fun getUsers(): Response<List<Catalog>>
+class ApiHelper @Inject constructor(
+    private val apiService: ApiService
+) {
+    
+    suspend fun getCatalog() = apiService.getCatalog()
+    
 }

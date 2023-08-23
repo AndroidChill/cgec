@@ -21,7 +21,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'BASE_URL', "\"szorinvodovoz.tw1.ru/newmobile/glavnaya/\""
+        buildConfigField 'String', 'BASE_URL', "\"http://szorinvodovoz.tw1.ru/newmobile/glavnaya/\""
     }
 
     buildTypes {

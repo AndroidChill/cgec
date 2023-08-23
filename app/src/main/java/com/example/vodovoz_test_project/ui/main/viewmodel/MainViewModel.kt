@@ -14,56 +14,52 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor (
+class MainViewModel @Inject constructor(
     private val catalogUseCase: CatalogUseCase
-        ) : ViewModel() {
-
-
+) : ViewModel() {
+    
     private var _state = MutableStateFlow(CatalogState())
     val state = _state.asStateFlow()
-
+    
     val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         _state.update { oldState ->
             oldState.copy(
                 events = oldState.events + CatalogState.Event.ShowError
             )
-
+            
         }
     }
-
+    
     init {
         viewModelScope.launch {
             getCatalog()
         }
-
+        
     }
-
+    
     suspend fun getCatalog() {
         viewModelScope.launch(coroutineExceptionHandler + CoroutineName("getCatalog")) {
-
+            
             val response = catalogUseCase.catalogList()
             _state.update { oldState ->
                 oldState.copy(
                     events = oldState.events + CatalogState.Event.LoadCatalog(
-                        response.TOVARY
+                        response.TOVARY[0].data
                     )
                 )
             }
         }
     }
-
-
+    
 }
 
 data class CatalogState(
     val events: List<Event> = emptyList()
 ) {
-
-    sealed class Event {
-        class LoadCatalog(val data: List<ProductData>) : Event()
+    
+    sealed class Event { class LoadCatalog(val data: List<ProductData>) : Event()
         object ShowError : Event()
     }
-
-
+    
 }
 

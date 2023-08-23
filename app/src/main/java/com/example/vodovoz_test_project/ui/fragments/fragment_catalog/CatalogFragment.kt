@@ -2,6 +2,9 @@ package com.example.vodovoz_test_project.ui.fragments.fragment_catalog
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,17 +25,24 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
     private val fragmentViewModel by viewModels<MainViewModel>()
     lateinit var binding: FragmentCatalogBinding
 
-    private lateinit var adapter: CatalogAdapter
+    private val adapter: CatalogAdapter = CatalogAdapter()
 
     private var isSelect = true
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentCatalogBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.rvCatalog.layoutManager = LinearLayoutManager(requireContext())
-
         binding.rvCatalog.adapter = adapter
-
+        
         binding.btnFirst.setTextColor(Color.BLUE)
         binding.btnFirst.setOnClickListener {
             if (!isSelect) {
@@ -41,7 +51,7 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
                 addData(true)
             }
         }
-
+        
         binding.btnSecond.setOnClickListener {
             if (isSelect) {
                 isSelect = !isSelect
@@ -49,9 +59,8 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
                 addData(false)
             }
         }
-
+        
         addData(true)
-
     }
 
 
@@ -75,8 +84,8 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
                         is CatalogState.Event.LoadCatalog -> {
                             val data = event.data.map {
                                 CatalogData(
-                                    imageLink = it.DETAIL_PICTURE,
-                                    cost = it.CATALOG_PURCHASING_PRICE
+                                    imageLink = it.DETAIL_PICTURE ?: "",
+                                    cost = it.CATALOG_PURCHASING_PRICE ?: ""
                                 )
                             }
 

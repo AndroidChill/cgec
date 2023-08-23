@@ -13,16 +13,16 @@ interface ApiService {
 @Serializable
 data class ListCatalog (
     val status: String,
-    val TOVARY: List <ProductData>
+    val TOVARY: List <Catalog>
         )
 
-//@Serializable
-//data class Catalog(
-//    val data: List <ProductData>
-//)
+@Serializable
+data class Catalog(
+    val data: List <ProductData>
+)
 
 @Serializable
 data class ProductData(
-    val DETAIL_PICTURE: String,
-    val CATALOG_PURCHASING_PRICE: String
+    val DETAIL_PICTURE: String?,
+    val CATALOG_PURCHASING_PRICE: String?
 )

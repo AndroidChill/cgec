@@ -1,9 +1,11 @@
 package com.example.vodovoz_test_project.di.module
 
 import com.example.vodovoz_test_project.BuildConfig
-import com.example.vodovoz_test_project.data.api.ApiHelperImpl
+import com.example.vodovoz_test_project.data.api.ApiHelper
 import com.example.vodovoz_test_project.data.api.ApiService
-import com.example.vodovoz_test_project.data.repository.MainRepository
+import com.example.vodovoz_test_project.data.repository.CatalogRepository
+import com.example.vodovoz_test_project.data.repository.CatalogRepositoryImpl
+import com.example.vodovoz_test_project.ui.fragments.CatalogUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -17,7 +19,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApplicationModule {
+object ApplicationModule {
 
     @Provides
     fun provideBaseUrl() = BuildConfig.BASE_URL
@@ -53,9 +55,11 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelperImpl = apiHelper
+    fun provideApiHelper(apiService: ApiService): ApiHelper = ApiHelper(apiService)
+    
+   
     @Provides
     @Singleton
-    fun provideMainRepository(repository: MainRepository): MainRepository = repository
+    fun provideUseCase(repository: CatalogRepository): CatalogUseCase = CatalogUseCase(repository)
 
 }
