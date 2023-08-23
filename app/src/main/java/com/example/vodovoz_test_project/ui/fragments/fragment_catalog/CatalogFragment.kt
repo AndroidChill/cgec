@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-abstract class CatalogFragment : Fragment(R.layout.fragment_catalog) {
+class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
     private val fragmentViewModel by viewModels<MainViewModel>()
     lateinit var binding: FragmentCatalogBinding

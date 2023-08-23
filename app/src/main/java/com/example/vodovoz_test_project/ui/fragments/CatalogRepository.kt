@@ -5,10 +5,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 
-@Module
-@InstallIn
+
 interface CatalogRepository {
 
-    @Provides
     suspend fun catalogList(): ListCatalog
 }

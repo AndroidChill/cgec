@@ -1,9 +1,10 @@
 package com.example.vodovoz_test_project.di.module
 
 import com.example.vodovoz_test_project.BuildConfig
-import com.example.vodovoz_test_project.data.api.ApiHelper
 import com.example.vodovoz_test_project.data.api.ApiHelperImpl
 import com.example.vodovoz_test_project.data.api.ApiService
+import com.example.vodovoz_test_project.data.repository.MainRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -53,5 +54,8 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelperImpl = apiHelper
+    @Provides
+    @Singleton
+    fun provideMainRepository(repository: MainRepository): MainRepository = repository
 
 }

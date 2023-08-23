@@ -10,6 +10,7 @@ interface ApiService {
 
 }
 
+@Serializable
 data class ListCatalog (
     val status: String,
     val TOVARY: List <ProductData>
